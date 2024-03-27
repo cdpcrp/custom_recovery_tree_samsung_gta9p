@@ -1,0 +1,16 @@
+# mount point	fstype		device			device2			flags
+
+/boot		emmc		/dev/block/bootdevice/by-name/boot
+/dtbo		emmc		/dev/block/bootdevice/by-name/dtbo		flags=backup=1;flashimg=1;display="DTBO"
+/recovery	emmc		/dev/block/bootdevice/by-name/recovery		flags=backup=1
+/vendor_boot	emmc		/dev/block/bootdevice/by-name/vendor_boot	flags=backup=1;flashimg=1;display="Vendor Boot"
+/cache		ext4		/dev/block/bootdevice/by-name/cache
+/efs		ext4		/dev/block/bootdevice/by-name/efs		flags=backup=1;display="EFS"
+/sec_efs	ext4		/dev/block/bootdevice/by-name/sec_efs		flags=backup=1;display="Sec EFS"
+/omr		ext4		/dev/block/bootdevice/by-name/omr		flags=wipeingui;display="OMR"
+/optics		ext4		/dev/block/bootdevice/by-name/optics		flags=wipeingui;display="Optics"
+/prism		ext4		/dev/block/bootdevice/by-name/prism		flags=wipeingui;display="Prism"
+/persist	ext4		/dev/block/bootdevice/by-name/persist		flags=fsflags=ro;display="Persist"
+
+# Removable partitions
+/external_sd	auto		/dev/block/mmcblk1p1	/dev/block/mmcblk1	flags=storage;wipeingui;removable
