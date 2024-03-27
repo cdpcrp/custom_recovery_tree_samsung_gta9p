@@ -56,6 +56,7 @@ BOARD_PREBUILT_DTBOIMAGE := $(DEVICE_PATH)/prebuilt/dtbo.img
 
 # Kernel
 BOARD_BOOT_HEADER_VERSION := 2
+BOARD_NAME := SRPWD25B001
 BOARD_KERNEL_BASE := 0x00000000
 BOARD_KERNEL_CMDLINE += \
 	console=ttyMSM0,115200n8 \
@@ -64,8 +65,8 @@ BOARD_KERNEL_CMDLINE += \
 	androidboot.console=ttyMSM0 \
 	androidboot.memcg=1 \
 	lpm_levels.sleep_disabled=1 \
-	video=vfb:640x400,bpp=32,memsize=3072000 m\
-	sm_rtb.filter=0x237 \
+	video=vfb:640x400,bpp=32,memsize=3072000 \
+	msm_rtb.filter=0x237 \
 	service_locator.enable=1 \
 	androidboot.usbcontroller=4e00000.dwc3 \
 	swiotlb=0 loop.max_part=7 \
@@ -75,16 +76,21 @@ BOARD_KERNEL_CMDLINE += \
 	firmware_class.path=/vendor/firmware_mnt/image
 BOARD_KERNEL_PAGESIZE := 4096
 BOARD_RAMDISK_OFFSET := 0x02000000
+BOARD_SECOND_OFFSET := 0x00000000
+BOARD_DTB_OFFSET := 0x01f00000
 BOARD_KERNEL_TAGS_OFFSET := 0x01e00000
 BOARD_KERNEL_IMAGE_NAME := Image
 TARGET_KERNEL_CONFIG := gta9p_defconfig
 TARGET_KERNEL_SOURCE := kernel/samsung/gta9p
 
 # MKBOOTIMG
+BOARD_MKBOOTIMG_ARGS += --board $(BOARD_NAME)
 BOARD_MKBOOTIMG_ARGS += --header_version $(BOARD_BOOT_HEADER_VERSION)
 BOARD_MKBOOTIMG_ARGS += --ramdisk_offset $(BOARD_RAMDISK_OFFSET)
 BOARD_MKBOOTIMG_ARGS += --tags_offset $(BOARD_KERNEL_TAGS_OFFSET)
 BOARD_MKBOOTIMG_ARGS += --dtb $(TARGET_PREBUILT_DTB)
+BOARD_MKBOOTIMG_ARGS += --dtb_offset $(BOARD_DTB_OFFSET)
+BOARD_MKBOOTIMG_ARGS += --second_offset $(BOARD_SECOND_OFFSET)
 
 # Partitions
 BOARD_HAS_LARGE_FILESYSTEM := true
