@@ -7,6 +7,9 @@
 
 LOCAL_PATH := device/samsung/gta9p
 
+# API levels
+PRODUCT_SHIPPING_API_LEVEL := 32
+
 # Dynamic
 PRODUCT_USE_DYNAMIC_PARTITIONS := true
 
