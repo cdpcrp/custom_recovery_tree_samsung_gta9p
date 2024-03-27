@@ -25,9 +25,12 @@
 # ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
 
+import /init.recovery.qcom_decrypt.rc
+
 on init
     write /sys/class/backlight/panel0-backlight/brightness 200
     setprop sys.usb.configfs 1
+    export LD_LIBRARY_PATH /system/lib64:/system/lib64/hw:/vendor/lib64:/vendor/lib64/hw
 
 on property:ro.boot.usbcontroller=*
     setprop sys.usb.controller ${ro.boot.usbcontroller}
