@@ -32,6 +32,9 @@ on init
     setprop sys.usb.configfs 1
     export LD_LIBRARY_PATH /system/lib64:/system/lib64/hw:/vendor/lib64:/vendor/lib64/hw
 
+on boot
+    start health-hal-2-1
+
 on property:ro.boot.usbcontroller=*
     setprop sys.usb.controller ${ro.boot.usbcontroller}
     write /sys/class/udc/${ro.boot.usbcontroller}/device/../mode peripheral
