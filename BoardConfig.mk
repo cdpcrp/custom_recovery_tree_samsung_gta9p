@@ -115,6 +115,18 @@ TARGET_USERIMAGES_USE_F2FS := true
 TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/recovery.fstab
 TARGET_VENDOR_PROP += $(DEVICE_PATH)/vendor.prop
 
+# Root
+ BOARD_ROOT_EXTRA_FOLDERS += \
+    carrier \
+    efs \
+    omr \
+    optics \
+    prism \
+    spu \
+    persist \
+    sec_efs \
+    firmware
+
 # Verified Boot
 BOARD_AVB_ENABLE := true
 BOARD_AVB_MAKE_VBMETA_IMAGE_ARGS += --flags 3
