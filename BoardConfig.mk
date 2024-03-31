@@ -85,6 +85,8 @@ BOARD_MKBOOTIMG_ARGS := \
 	--dtb_offset 0x01f00000 \
 	--header_version 2 \
 	--tags_offset 0x01e00000
+BOARD_CUSTOM_BOOTIMG_MK := $(DEVICE_PATH)/mkbootimg.mk
+BOARD_CUSTOM_BOOTIMG := true
 
 # Partitions | size
 BOARD_HAS_LARGE_FILESYSTEM := true
