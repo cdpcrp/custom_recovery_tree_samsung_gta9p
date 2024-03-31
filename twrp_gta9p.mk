@@ -5,11 +5,11 @@
 # SPDX-License-Identifier: Apache-2.0
 #
 
-# Inherit from those products. Most specific first.
+# Inherit from those products. Most specific first.)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 
-# Inherit some common Twrp stuff.
+# Inherit some common twrp stuff.
 $(call inherit-product, vendor/twrp/config/common.mk)
 
 # Inherit from gta9p device
@@ -24,6 +24,6 @@ PRODUCT_MANUFACTURER := samsung
 PRODUCT_GMS_CLIENTID_BASE := android-samsung
 
 PRODUCT_BUILD_PROP_OVERRIDES += \
-    PRIVATE_BUILD_DESC="gta9pxxx-user 11 RP1A.200720.012 X216BXXU1BXA9 release-keys"
+    PRIVATE_BUILD_DESC="gta9pxxx-user 11 RP1A.200720.012 X216BXXS1AWK1 release-keys"
 
-BUILD_FINGERPRINT := samsung/gta9pxxx/gta9p:11/RP1A.200720.012/X216BXXU1BXA9:user/release-keys
+BUILD_FINGERPRINT := samsung/gta9pxxx/gta9p:11/RP1A.200720.012/X216BXXS1AWK1:user/release-keys
