@@ -197,7 +197,6 @@ TW_EXCLUDE_DEFAULT_USB_INIT := true
 TW_EXCLUDE_APEX := true
 TW_INCLUDE_FASTBOOTD := true
 TW_PREPARE_DATA_MEDIA_EARLY := true
-TW_DEVICE_VERSION := Crypton
 TW_OVERRIDE_SYSTEM_PROPS := \
     "ro.build.version.security_patch;ro.vendor.build.security_patch"
 TW_LOAD_VENDOR_BOOT_MODULES := true
@@ -205,3 +204,19 @@ TW_LOAD_VENDOR_BOOT_MODULES := true
 # TWRP | others
 ENABLE_CPUSETS := true
 ENABLE_SCHEDBOOST := true
+
+# Custom TWRP Versioning
+# See https://github.com/minimal-manifest-twrp/android_device_common_version-info for details
+ifneq ($(USE_CUSTOM_VERSION),)
+    ifneq ($(wildcard device/common/version-info/.),)
+        # version prefix is optional - the default value is "LOCAL" if nothing is set in device tree
+        CUSTOM_TWRP_VERSION_PREFIX := C-$(shell date +%Y%m%d)-01
+
+        # Repo must be synced for automatic custom versioning to work
+        include device/common/version-info/custom_twrp_version.mk
+
+        ifeq ($(CUSTOM_TWRP_VERSION),)
+            CUSTOM_TWRP_VERSION := $(shell date +%Y%m%d)-01
+        endif
+    endif
+endif
