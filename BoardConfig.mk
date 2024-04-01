@@ -203,6 +203,7 @@ TW_PREPARE_DATA_MEDIA_EARLY := true
 TW_DEVICE_VERSION := Crypton
 TW_OVERRIDE_SYSTEM_PROPS := \
     "ro.build.version.security_patch;ro.vendor.build.security_patch"
+TW_LOAD_VENDOR_BOOT_MODULES := true
 
 # TWRP | others
 ENABLE_CPUSETS := true
