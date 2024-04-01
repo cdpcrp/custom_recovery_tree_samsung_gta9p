@@ -31,7 +31,6 @@ on init
     export LD_LIBRARY_PATH /system/lib64:/system/lib64/hw:/vendor/lib64:/vendor/lib64/hw
     setprop prepdecrypt.setpatch true
     setprop prepdecrypt.loglevel 2
-    setprop ro.vendor.build.security_patch 2099-12-31
 
 on boot
     start health-hal-2-1
@@ -51,3 +50,6 @@ on post-fs
 
 on post-fs-data
     mkdir /data/vendor/keymaster 0775 root root
+
+on property:ro.build.version.security_patch=*
+    setprop ro.vendor.build.security_patch ${ro.build.version.security_patch}
