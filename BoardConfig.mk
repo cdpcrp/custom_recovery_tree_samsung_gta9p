@@ -197,8 +197,6 @@ TW_EXCLUDE_DEFAULT_USB_INIT := true
 TW_EXCLUDE_APEX := true
 TW_INCLUDE_FASTBOOTD := true
 TW_PREPARE_DATA_MEDIA_EARLY := true
-TW_OVERRIDE_SYSTEM_PROPS := \
-    "ro.build.version.security_patch;ro.vendor.build.security_patch"
 TW_LOAD_VENDOR_MODULES := $(shell echo \"$(shell ls $(DEVICE_PATH)/recovery/root/vendor/lib/modules/1.1)\")
 TW_LOAD_VENDOR_BOOT_MODULES := true
 
