@@ -205,12 +205,20 @@ TW_LOAD_VENDOR_BOOT_MODULES := true
 ENABLE_CPUSETS := true
 ENABLE_SCHEDBOOST := true
 
+
+#
+# For local builds only
+#
 # Custom TWRP Versioning
 # See https://github.com/minimal-manifest-twrp/android_device_common_version-info for details
+USE_CUSTOM_VERSION := true
 ifneq ($(USE_CUSTOM_VERSION),)
     ifneq ($(wildcard device/common/version-info/.),)
+	# device version is optional - the default value is "0" if nothing is set in device tree
+	CUSTOM_TWRP_DEVICE_VERSION := 1
+
         # version prefix is optional - the default value is "LOCAL" if nothing is set in device tree
-        CUSTOM_TWRP_VERSION_PREFIX := C-$(shell date +%Y%m%d)-01
+        CUSTOM_TWRP_VERSION_PREFIX := CRYPTON
 
         # Repo must be synced for automatic custom versioning to work
         include device/common/version-info/custom_twrp_version.mk
