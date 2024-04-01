@@ -141,7 +141,7 @@ TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/recovery.fstab
 TARGET_VENDOR_PROP += $(DEVICE_PATH)/vendor.prop
 
  # Root
- BOARD_ROOT_EXTRA_FOLDERS := \
+BOARD_ROOT_EXTRA_FOLDERS := \
     carrier \
     efs \
     omr \
