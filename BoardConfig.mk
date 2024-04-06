@@ -199,6 +199,7 @@ TW_INCLUDE_FASTBOOTD := true
 TW_PREPARE_DATA_MEDIA_EARLY := true
 TW_LOAD_VENDOR_MODULES := "icnl9951r.ko subsys-pil-tz.ko jadard_touch.ko focaltech_tp.ko"
 TW_LOAD_VENDOR_BOOT_MODULES := true
+TW_LOAD_VENDOR_MODULES_EXCLUDE_GKI := true
 
 # TWRP | others
 ENABLE_CPUSETS := true
