@@ -197,7 +197,7 @@ TW_EXCLUDE_DEFAULT_USB_INIT := true
 TW_EXCLUDE_APEX := true
 TW_INCLUDE_FASTBOOTD := true
 TW_PREPARE_DATA_MEDIA_EARLY := true
-TW_LOAD_VENDOR_MODULES := true
+TW_LOAD_VENDOR_MODULES := "icnl9951r.ko subsys-pil-tz.ko jadard_touch.ko focaltech_tp.ko"
 TW_LOAD_VENDOR_BOOT_MODULES := true
 
 # TWRP | others
