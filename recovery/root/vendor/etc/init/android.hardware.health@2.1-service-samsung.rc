@@ -1,0 +1,8 @@
+service health-hal-2-1-samsung /vendor/bin/hw/android.hardware.health@2.1-service-samsung
+    user root
+    group root
+    capabilities WAKE_ALARM
+    file /dev/kmsg w
+    disabled
+    seclabel u:r:recovery:s0
+
