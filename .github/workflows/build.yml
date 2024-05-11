@@ -1,0 +1,110 @@
+name: TWRP
+
+on:
+  push:
+    branches:
+      - 'twrp-12.1'
+
+    paths:
+      - 'version.mk'
+
+jobs:
+  build:
+    name: Build TWRP by ${{ github.actor }}
+    runs-on: ubuntu-20.04
+    if: github.event.repository.owner.id == github.event.sender.id
+    permissions:
+      contents: write
+    steps:
+    - name: Check Out
+      uses: actions/checkout@v4
+
+    - name: Cleanup
+      uses: rokibhasansagar/slimhub_actions@main
+
+    - name: Set Swap Space
+      uses: pierotofy/set-swap-space@master
+      with:
+        swap-size-gb: 24
+
+    - name: Prepare the environment
+      run: |
+        sudo apt update
+        sudo apt -y upgrade
+        sudo apt -y install gperf gcc-multilib gcc-10-multilib g++-multilib g++-10-multilib libc6-dev lib32ncurses5-dev x11proto-core-dev libx11-dev tree lib32z-dev libgl1-mesa-dev libxml2-utils xsltproc bc ccache lib32readline-dev lib32z1-dev liblz4-tool libncurses5-dev libsdl1.2-dev libwxgtk3.0-gtk3-dev libxml2 lzop pngcrush schedtool squashfs-tools imagemagick libbz2-dev lzma ncftp qemu-user-static libstdc++-10-dev libtinfo5 libgflags-dev
+        sudo add-apt-repository universe
+        sudo apt -y install libncurses5
+
+    - name: Install OpenJDK
+      uses: actions/setup-java@v4
+      with:
+        distribution: 'zulu'
+        java-version: '8'
+
+    - name: Install Git-Repo
+      run: |
+        mkdir ~/bin
+        curl https://storage.googleapis.com/git-repo-downloads/repo > ~/bin/repo
+        chmod a+x ~/bin/repo
+        sudo ln -sf ~/bin/repo /usr/bin/repo
+
+    - name: Initialize Repo
+      run: |
+        mkdir twrp
+        cd twrp
+        git config --global user.name "Carlo Dee"
+        git config --global user.email "carlodee.official@proton.me"
+        repo init --depth=1 -u https://github.com/minimal-manifest-twrp/platform_manifest_twrp_aosp.git -b twrp-12.1
+        repo sync -j$(nproc --all) --force-sync
+
+    - name: Clone Device Tree
+      run: |
+        cd twrp
+        git clone https://github.com/cd-Crypton/custom_recovery_tree_samsung_gta9p.git -b twrp-12.1 ./device/samsung/gta9p
+        cd device/samsung/gta9p
+        echo "COMMIT_ID=$(git rev-parse HEAD)" >> $GITHUB_ENV
+        echo "VERSION=$(cat version.mk | grep '^TW_DEVICE_VERSION' | awk '{print $3}')" >> $GITHUB_ENV
+
+    - name: Building Image
+      run: |
+        echo "BUILD_DATE=$(date +%Y%m%d)" >> $GITHUB_ENV
+        cd twrp
+        source build/envsetup.sh
+        export ALLOW_MISSING_DEPENDENCIES=true
+        lunch twrp_gta9p-eng && make clean && mka recoveryimage
+        cd out/target/product/gta9p
+        echo "Done building your recovery.img"
+
+    - name: Set Body
+      run: |
+        echo -e \
+        "
+        ## Unofficial Build for Samsung Galaxy Tab A9+ 5G - SM-X216B (gta9p)
+        _Note: Flash at your own risk. This build were still in the process of testing._
+        ### Resources
+        * [TWRP Manifest](https://github.com/minimal-manifest-twrp/platform_manifest_twrp_aosp/tree/twrp-12.1)
+        * [Device Tree](https://github.com/cd-Crypton/custom_recovery_tree_samsung_gta9p/tree/twrp-12.1)
+        
+        Build Device: gta9p
+        Build Date: ${{ env.BUILD_DATE }}
+        Build Release: Unofficial Beta
+        Build Branch: 12.1 (v3.7.1)
+        Compatibility: Android 12+
+        Custom Version: ${{ env.VERSION }}
+        
+        ### What's new?
+        * To be edited...
+        
+        ### Trigger Event
+        _This build were compiled by triggering branch twrp-12.1 of current tree, triggered by a push event in [version makefile](https://github.com/cd-Crypton/custom_recovery_tree_samsung_gta9p/blob/twrp-12.1/version.mk)._
+        * [Last Commit](https://github.com/cd-Crypton/custom_recovery_tree_samsung_gta9p/commit/${{ env.COMMIT_ID }})
+        " > changelog.txt
+
+    - name: Upload to Release
+      uses: softprops/action-gh-release@v1
+      with:
+        files: |
+          twrp/out/target/product/gta9p/recovery.img
+        name: TWRP Release Build for Samsung Galaxy Tab A9+ 5G - SM-X216B (gta9p) // ${{ env.BUILD_DATE }}
+        tag_name: ${{ github.run_id }}
+        body_path: changelog.txt
