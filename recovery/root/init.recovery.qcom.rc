@@ -34,8 +34,6 @@ on init
 
 on boot
     start health-hal-2-1
-    insmod /vendor/lib/modules/1.1/focaltech_tp.ko
-    insmod /vendor/lib/modules/1.1/icnl9951r.ko
 
 on fs
     wait /dev/block/platform/soc/${ro.boot.bootdevice}
@@ -52,6 +50,3 @@ on post-fs
 
 on post-fs-data
     mkdir /data/vendor/keymaster 0775 root root
-
-on property:ro.build.version.security_patch=*
-    setprop ro.vendor.build.security_patch ${ro.build.version.security_patch}
