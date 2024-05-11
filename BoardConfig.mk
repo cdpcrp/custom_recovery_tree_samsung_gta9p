@@ -65,7 +65,8 @@ BOARD_KERNEL_CMDLINE += \
 	cgroup.memory=nokmem,nosocket \
 	iptable_raw.raw_before_defrag=1 \
 	ip6table_raw.raw_before_defrag=1 \
-	firmware_class.path=/vendor/firmware_mnt/image
+	firmware_class.path=/vendor/firmware_mnt/image \
+	androidboot.selinux=permissive
 
 # Kernel
 TARGET_KERNEL_ARCH := $(TARGET_ARCH)
