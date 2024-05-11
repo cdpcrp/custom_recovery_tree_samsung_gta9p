@@ -199,5 +199,5 @@ TW_EXCLUDE_APEX := true
 TW_INCLUDE_FASTBOOTD := true
 TW_PREPARE_DATA_MEDIA_EARLY := true
 
-# TWRP Device Version
-TW_DEVICE_VERSION := CDC-001
+# Maintainer/Version
+include $(DEVICE_PATH)/version.mk
