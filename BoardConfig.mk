@@ -199,22 +199,5 @@ TW_EXCLUDE_APEX := true
 TW_INCLUDE_FASTBOOTD := true
 TW_PREPARE_DATA_MEDIA_EARLY := true
 
-#
-# For local builds only
-#
-# Custom TWRP Versioning
-# See https://github.com/minimal-manifest-twrp/android_device_common_version-info for details
-USE_CUSTOM_VERSION := true
-ifneq ($(USE_CUSTOM_VERSION),)
-    ifneq ($(wildcard device/common/version-info/.),)
-        # version prefix is optional - the default value is "LOCAL" if nothing is set in device tree
-        CUSTOM_TWRP_VERSION_PREFIX := CDC
-
-        # Repo must be synced for automatic custom versioning to work
-        include device/common/version-info/custom_twrp_version.mk
-
-        ifeq ($(CUSTOM_TWRP_VERSION),)
-            CUSTOM_TWRP_VERSION := 01
-        endif
-    endif
-endif
+# TWRP Device Version
+TW_DEVICE_VERSION := CDC-001
