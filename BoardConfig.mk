@@ -214,7 +214,7 @@ ifneq ($(USE_CUSTOM_VERSION),)
         include device/common/version-info/custom_twrp_version.mk
 
         ifeq ($(CUSTOM_TWRP_VERSION),)
-            CUSTOM_TWRP_VERSION := $(shell date +%Y%m%d)-01
+            CUSTOM_TWRP_VERSION := 01
         endif
     endif
 endif
