@@ -41,7 +41,7 @@ on fs
     symlink /dev/block/platform/soc/${ro.boot.bootdevice} /dev/block/bootdevice
     # Mount firmware
     mkdir /vendor/firmware_mnt
-    symlink /vendor/firmware_mnt /vendor/firmware
+    mount vfat /dev/block/bootdevice/by-name/apnhlos /vendor/firmware_mnt ro
 
 on post-fs
     mkdir /mnt/vendor/efs/DAK 0775 root root
