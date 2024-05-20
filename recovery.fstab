@@ -41,10 +41,8 @@ system						/system		    f2fs	ro			wait,logical,first_stage_mount
 system						/system		    ext4	ro			wait,logical,first_stage_mount
 vendor						/vendor		    erofs	ro			wait,logical,first_stage_mount
 system_ext					/system_ext	    erofs	ro			wait,logical,first_stage_mount
-vendor_dlkm					/vendor_dlkm	erofs	ro			wait,logical,first_stage_mount
 product						/product	    erofs	ro			wait,logical,first_stage_mount
 odm						    /odm		    erofs	ro			wait,logical,first_stage_mount
-system_dlkm					/system_dlkm	erofs	ro			wait,logical,first_stage_mount
 
 # Data Partitions
 /dev/block/by-name/metadata	/metadata	ext4	noatime,nosuid,nodev,noauto_da_alloc,discard,journal_checksum,data=ordered,errors=panic,sync	wait,formattable,first_stage_mount,check
