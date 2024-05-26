@@ -27,6 +27,11 @@ jobs:
       with:
         swap-size-gb: 24
 
+    - name: Setup ccache
+      uses: hendrikmuhs/ccache-action@v1.2
+      with:
+        max-size: "10G"
+
     - name: Prepare the environment
       run: |
         sudo apt update
@@ -69,6 +74,9 @@ jobs:
       run: |
         echo "BUILD_DATE=$(date +%Y%m%d)" >> $GITHUB_ENV
         cd twrp
+        export USE_CCACHE=1
+        export CCACHE_EXEC=/usr/bin/ccache
+        sed -i 's/return sandboxConfig\.working/return false/g' build/soong/ui/build/sandbox_linux.go
         source build/envsetup.sh
         export ALLOW_MISSING_DEPENDENCIES=true
         lunch twrp_gta9p-eng && make clean && mka recoveryimage
