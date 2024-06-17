@@ -34,7 +34,7 @@ on init
     setprop prepdecrypt.loglevel 2
 
 on boot
-    start health-hal-2-1-samsung
+    start health-hal-2-1
 
 on fs
     wait /dev/block/platform/soc/${ro.boot.bootdevice}

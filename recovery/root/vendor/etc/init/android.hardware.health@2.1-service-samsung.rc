@@ -1,4 +1,4 @@
-service health-hal-2-1-samsung /vendor/bin/hw/android.hardware.health@2.1-service-samsung
+service health-hal-2-1-samsung /system/bin/android.hardware.health@2.1-service-samsung
     user root
     group root
     capabilities WAKE_ALARM
