@@ -28,10 +28,8 @@ import /init.recovery.qcom_decrypt.rc
 import /init.recovery.display.rc
 
 on init
-    write /sys/class/backlight/panel0-backlight/brightness 200
     export LD_LIBRARY_PATH /system/lib64:/system/lib64/hw:/vendor/lib64:/vendor/lib64/hw
     setprop prepdecrypt.setpatch true
-    setprop prepdecrypt.loglevel 2
 
 on boot
     start health-hal-2-1
@@ -41,7 +39,9 @@ on fs
     symlink /dev/block/platform/soc/${ro.boot.bootdevice} /dev/block/bootdevice
     # Mount firmware
     mkdir /vendor/firmware_mnt
-    mount vfat /dev/block/bootdevice/by-name/apnhlos /vendor/firmware_mnt ro
+    mount vfat /dev/block/bootdevice/by-name/apnhlos /vendor/firmware_mnt
+    # ANDROID_ROOT
+    export ANDROID_ROOT /system_root
 
 on post-fs
     mkdir /mnt/vendor/efs/DAK 0775 root root
