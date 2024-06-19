@@ -151,8 +151,7 @@ BOARD_ROOT_EXTRA_FOLDERS := \
     prism \
     spu \
     persist \
-    sec_efs \
-    firmware
+    sec_efs
 
 # Security patch level
 PLATFORM_VERSION := 14
