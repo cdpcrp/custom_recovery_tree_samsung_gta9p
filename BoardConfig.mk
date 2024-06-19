@@ -65,7 +65,7 @@ BOARD_KERNEL_CMDLINE += \
 	cgroup.memory=nokmem,nosocket \
 	iptable_raw.raw_before_defrag=1 \
 	ip6table_raw.raw_before_defrag=1 \
-	firmware_class.path=/vendor/firmware \
+	firmware_class.path=/vendor/firmware_mnt/image \
 	androidboot.selinux=permissive
 
 # Kernel
@@ -104,13 +104,13 @@ BOARD_CACHEIMAGE_PARTITION_SIZE := 0xC800000
 BOARD_ODMIMAGE_PARTITION_SIZE := 0x177000
 
 # Partitions | type
-BOARD_SYSTEMIMAGE_PARTITION_TYPE := ext4
-BOARD_USERDATAIMAGE_FILE_SYSTEM_TYPE := ext4
-BOARD_PRODUCTIMAGE_FILE_SYSTEM_TYPE := ext4
-BOARD_SYSTEM_EXTIMAGE_FILE_SYSTEM_TYPE := ext4
-BOARD_VENDORIMAGE_FILE_SYSTEM_TYPE := ext4
+BOARD_SYSTEMIMAGE_PARTITION_TYPE := erofs
+BOARD_USERDATAIMAGE_FILE_SYSTEM_TYPE := f2fs
+BOARD_PRODUCTIMAGE_FILE_SYSTEM_TYPE := erofs
+BOARD_SYSTEM_EXTIMAGE_FILE_SYSTEM_TYPE := erofs
+BOARD_VENDORIMAGE_FILE_SYSTEM_TYPE := erofs
 BOARD_CACHEIMAGE_FILE_SYSTEM_TYPE := ext4
-BOARD_ODMIMAGE_FILE_SYSTEM_TYPE := ext4
+BOARD_ODMIMAGE_FILE_SYSTEM_TYPE := erofs
 
 # Partitions | copyout
 TARGET_COPY_OUT_VENDOR := vendor
