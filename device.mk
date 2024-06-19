@@ -53,3 +53,6 @@ PRODUCT_SOONG_NAMESPACES += \
 
 # VNDK
 PRODUCT_TARGET_VNDK_VERSION := 32
+
+# Enable Fuse Passthrough
+PRODUCT_PROPERTY_OVERRIDES += persist.sys.fuse.passthrough.enable=true
