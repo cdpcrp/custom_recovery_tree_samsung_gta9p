@@ -50,10 +50,3 @@ on post-fs
 
 on post-fs-data
     mkdir /data/vendor/keymaster 0775 root root
-
-service keystore2 /system/bin/keystore2 /data/misc/keystore
-    user root
-    group root readproc log 5666 5678
-    task_profiles ProcessCapacityHigh
-    disabled
-    seclabel u:r:recovery:s0
