@@ -40,7 +40,6 @@ if [ "$1" = "$FDEVICE" -o "$FOX_BUILD_DEVICE" = "$FDEVICE" ]; then
 # Initial Info
     export ALLOW_MISSING_DEPENDENCIES=true
     export LC_ALL="C"
-    export FOX_USE_TWRP_RECOVERY_IMAGE_BUILDER="1"
 # Maintaining Info
     export OF_MAINTAINER=Crypton
     export FOX_VERSION="R11.1"
@@ -77,6 +76,7 @@ if [ "$1" = "$FDEVICE" -o "$FOX_BUILD_DEVICE" = "$FDEVICE" ]; then
     export OF_PATCH_AVB20=1
     export OF_NO_SPLASH_CHANGE=1
     export OF_FIX_DECRYPTION_ON_DATA_MEDIA=1
+    export OF_DEFAULT_KEYMASTER_VERSION=4.0
     export FOX_BUGGED_AOSP_ARB_WORKAROUND="1616300800"; # Sun 21 Mar 04:26:40 GMT 2021
 
 	# let's see what are our build VARs
