@@ -81,8 +81,12 @@ jobs:
         source build/envsetup.sh
         export ALLOW_MISSING_DEPENDENCIES=true
         lunch twrp_gta9p-eng && make clean && mka recoveryimage
-        cd out/target/product/gta9p
         echo "Done building your recovery.img"
+        cd out/target/product/gta9p
+        echo "Creating tar archive for ODIN flashing..."
+        tar -cvf recovery.tar recovery.img
+        echo "Done, download it and flash."
+        
 
     - name: Set Body
       run: |
@@ -115,6 +119,7 @@ jobs:
       with:
         files: |
           twrp/out/target/product/gta9p/recovery.img
+          twrp/out/target/product/gta9p/recovery.tar
         name: TWRP Release Build for Samsung Galaxy Tab A9+ 5G - SM-X216B (gta9p) // ${{ env.BUILD_DATE }}
         tag_name: ${{ github.run_id }}
         body_path: changelog.txt
