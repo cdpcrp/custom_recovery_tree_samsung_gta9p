@@ -26,12 +26,9 @@
 /prism_image        emmc		/dev/block/bootdevice/by-name/prism                 flags=backup=1;flashimg;display="Prism Image"
 /vbmeta_system      emmc		/dev/block/bootdevice/by-name/vbmeta_system
 /vendor_boot        emmc		/dev/block/bootdevice/by-name/vendor_boot           flags=backup=1;flashimg;display="Vendor Boot"
-/vbmeta_samsung     emmc		/dev/block/bootdevice/by-name/vbmeta_samsung
 /vbmeta             emmc		/dev/block/bootdevice/by-name/vbmeta                flags=backup=1;flashimg;display="Vbmeta"
-/vm-bootsys         ext4		/dev/block/bootdevice/by-name/vm-bootsys
 /imagefv            emmc		/dev/block/bootdevice/by-name/imagefv
 /efuse              emmc		/dev/block/bootdevice/by-name/efuse
-/preloader          emmc		/dev/block/bootdevice/by-name/bootloader
 
 # External
 /sdcard            vfat      /dev/block/mmcblk1p1                            flags=display=sdcard
