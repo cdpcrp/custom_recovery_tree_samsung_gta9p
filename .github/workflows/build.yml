@@ -69,6 +69,7 @@ jobs:
         cd device/samsung/gta9p
         echo "COMMIT_ID=$(git rev-parse HEAD)" >> $GITHUB_ENV
         echo "VERSION=$(cat version.mk | grep '^TW_DEVICE_VERSION' | awk '{print $3}')" >> $GITHUB_ENV
+        echo "COMMIT_ID2=$(git log --pretty=format:"%H" --grep="Unofficial build release" | sed -n '2p')" >> $GITHUB_ENV
 
     - name: Building Image
       run: |
@@ -102,7 +103,8 @@ jobs:
         
         ### What's new?
         * To be edited...
-        
+        * [Full Changelog](https://github.com/cd-Crypton/custom_recovery_tree_samsung_gta9p/compare/${{ env.COMMIT_ID2 }}...${{ env.COMMIT_ID }})
+
         ### Trigger Event
         _This build were compiled by triggering branch twrp-12.1 of current tree, triggered by a push event in [version makefile](https://github.com/cd-Crypton/custom_recovery_tree_samsung_gta9p/blob/twrp-12.1/version.mk)._
         * [Last Commit](https://github.com/cd-Crypton/custom_recovery_tree_samsung_gta9p/commit/${{ env.COMMIT_ID }})
